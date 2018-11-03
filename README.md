@@ -1,17 +1,40 @@
-# Blueprint Truffle Box
+# Pet Shop Truffle Box
 
-This box comes with everything you need to create your own Truffle Box.
+This box has all you need to get started with our [Pet Shop tutorial](http://truffleframework.com/tutorials/pet-shop).
 
-## Getting Started
+## Installation
 
-After adding your libraries and code:
+1. Install Truffle globally.
+    ```javascript
+    npm install -g truffle
+    ```
 
-1. Delete `box-img-sm.png` and `box-img-lg.png`.
+2. Download the box. This also takes care of installing the necessary dependencies.
+    ```javascript
+    truffle unbox pet-shop
+    ```
 
-2. Use `box-img-sm-template.png` and `box-img-lg-template.png` to create your own art.
+3. Run the development console.
+    ```javascript
+    truffle develop
+    ```
 
-3. Delete the template images and replace them with your art. Be sure your art's filenames don't have -template in them.
+4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
+    ```javascript
+    compile
+    migrate
+    ```
 
-4. Customize the box configuration file (`box-config.json`) if necessary.
+5. Run the `liteserver` development server (outside the development console) for front-end hot reloading. Smart contract changes must be manually recompiled and migrated.
+    ```javascript
+    // Serves the front-end on http://localhost:3000
+    npm run dev
+    ```
 
-See [the Truffle Box section of our documentation](http://truffleframework.com/) for more info.
+**NOTE**: This box is not a complete dapp, but the starting point for the [Pet Shop tutorial](http://truffleframework.com/tutorials/pet-shop). You'll need to complete that for this to function.
+
+## FAQ
+
+* __How do I use this with the EthereumJS TestRPC?__
+
+    It's as easy as modifying the config file! [Check out our documentation on adding network configurations](http://truffleframework.com/docs/advanced/configuration#networks). Depending on the port you're using, you'll also need to update line 16 of `src/js/app.js`.
