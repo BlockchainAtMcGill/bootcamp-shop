@@ -56,8 +56,8 @@
   </nav>
 
   <!-- Modal -->
-      <div id="postBox" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-sm">
+      <div id="postBox" class="modal fade " role="dialog">
+        <div class="modal-dialog modal-lg">
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
@@ -82,11 +82,24 @@
                   </div>
                 </div>
                 
-                 <div class="images">
-                  <div class="pic">
-                    add
-                  </div>
-                  </div>
+                
+                <div class="container">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-default btn-file">
+                                    Browse… <input type="file" id="imgInp">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <img id='img-upload'/>
+                    </div>
+                </div>
+                </div>
+
               </form>
               <div class = "form-group"> 
                 <button type="submit" class="btn btn-block btn-default">Submit</button>
