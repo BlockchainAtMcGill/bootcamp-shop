@@ -19,7 +19,7 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header top-color">
@@ -31,6 +31,7 @@
           </button>
           <a class="navbar-brand brand-color" href="#"> B@M SHOP </a>
         </div>
+        
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -42,13 +43,15 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="Se">
+
               <a href="#" class="dropdown-toggle top-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Resources <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu resources-items">
                 <li><a href="https://truffleframework.com/docs"><img class="resource-logo" src="images/truffle-logomark.svg"  > Truffle </a></li>
                 <li><a href="https://solidity.readthedocs.io/en/v0.5.2/"><img class="solidity-logo" src="images/solidity-logo.png"  > Solidity </a></li>
                 <li><a href="https://devdocs.io/javascript/"><img class="resource-logo" src="images/javascript-logo.png"  > Javascript </a></li>
                 <li role="separator" class="divider"></li>
               </ul> 
+              
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -82,8 +85,7 @@
                   </div>
                 </div>
                 
-                
-                <div class="container">
+                <div class="modal-body">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Upload Image</label>
@@ -102,7 +104,7 @@
 
               </form>
               <div class = "form-group"> 
-                <button type="submit" class="btn btn-block btn-default">Submit</button>
+                <button type="submit" class="btn btn-block btn-default" onclick="submit()">Submit</button>
               </div>
 
             </div>

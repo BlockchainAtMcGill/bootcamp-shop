@@ -190,6 +190,17 @@ footer{
     display: block;
 }
 
-#img-upload{
-    width: 100%;
+.resources-items li{
+	background-color: white;
+  	color: #33383b;
+}
+
+.resources-items :hover {
+ 	background-color: #33383b;
+  	color: white;
+}
+
+.icon-bar{
+	color: white;
+	background-color: white;
 }
