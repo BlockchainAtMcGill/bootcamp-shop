@@ -17,6 +17,7 @@ This box has all you need to get started with our [Pet Shop tutorial](http://tru
 3. git clone or fork the repository.
 ```bash
     git clone https://github.com/BlockchainAtMcGill/bootcamp-shop.git
+    cd bootcamp-shop
     
 ```
 
