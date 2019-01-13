@@ -13,6 +13,12 @@ This box has all you need to get started with our [Pet Shop tutorial](http://tru
     ```javascript
     truffle unbox pet-shop
     ```
+    
+3. git clone or fork the repository.
+```javascript
+    git clone 
+    ```
+
 
 3. Run the development console.
     ```javascript
