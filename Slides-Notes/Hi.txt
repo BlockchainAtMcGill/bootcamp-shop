@@ -1,0 +1,6 @@
+Hi all, Thanks for attending the Solidity 101 - Introduction to Smart Contracts.
+
+The Slides are to be followed in the following order:
+  1. Introduction to Solidity
+  2. 
+  3. Oraclize
