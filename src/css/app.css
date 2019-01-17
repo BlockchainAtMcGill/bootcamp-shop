@@ -104,7 +104,7 @@ div.nav-subcontainer{
 /* FOOTER */
 
 footer{
-	position: static;
+	position: fixed;
 	bottom: 0;
 }
 
@@ -170,6 +170,40 @@ footer{
 	}
 }
 
+.clear { 
+	clear: both;
+	height: 100px; 
+}
+
+/* 
+ GALLERY
+*/
+
+.browse-image {
+	height:20px;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.widthSet {
+    max-width: 100px;
+}
+
+/* POST */
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -190,6 +224,26 @@ footer{
     display: block;
 }
 
-#img-upload{
-    width: 100%;
+.resources-items li{
+	background-color: white;
+  	color: #33383b;
+}
+
+.resources-items :hover {
+ 	background-color: #33383b;
+  	color: white;
+}
+
+.icon-bar{
+	color: white;
+	background-color: white;
+}
+
+
+/* 
+Image Picker
+*/
+ 
+.gallery {
+	max-width:100px;
 }

@@ -14,7 +14,7 @@ App = {
         itemTemplate.find('.item-type').text(data[i].type);
         itemTemplate.find('.item-price').text(data[i].price);
         itemTemplate.find('.item-seller').text(data[i].seller);
-        itemTemplate.find('.btn-shop').attr('data-id', data[i].id);
+        itemTemplate.find('.btn-buy').attr('data-id', data[i].id);
 
         itemsRow.append(itemTemplate.html());
       }
@@ -47,23 +47,21 @@ App = {
       App.contracts.Shop.setProvider(App.web3Provider);
 
       // Use our contract to retieve and mark the bought items.
-      return App.markBought();
+      return App.getItems();
     });
 
     return App.bindEvents();
   },
 
   bindEvents: function() {
-    $(document).on('click', '.btn-shop', App.handleBuy);
+    $(document).on('click', '.btn-buy', App.handleBuy);
   },
 
-  handleBuy: function() {
-    event.preventDefault();
+  handleList: function() {
+    
+  },
 
-    var itemId = parseInt($(event.target).data('id'));
-
-    var shopInstance;
-
+  handleWithdraw: function() {
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
         console.log(error);
@@ -74,35 +72,115 @@ App = {
       App.contracts.Shop.deployed().then(function(instance) {
         shopInstance = instance;
 
-        return shopInstance.shop(itemId, {from: account});
+        return shopInstance.withdrawFunds({from: account});
       }).then(function(result) {
-        return App.markBought();
+        console.log(`account balance: ${web3.fromWei(web3.eth.getBalance(account))}`);
       }).catch(function(err) {
         console.log(err.message);
       });
     });
   },
 
-  markBought: function(buyers, account) {
+  handleDelete: function(id) {
+    // event.preventDefault();
+
+    // var itemId = parseInt($(event.target).data('id'));
+
+    // console.log(`deleting item: ${$(event.target).data('id')}`);
+    // $(event.target).data('id')
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+
+      App.contracts.Shop.deployed().then(function(instance) {
+        shopInstance = instance;
+
+        return shopInstance.deleteItem(id, {from: account, gas: 999999});
+      }).then(function(result) {
+        return App.getItems();
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
+  },
+
+  handleBuy: function() {
+    event.preventDefault();
+
+    var itemId = parseInt($(event.target).data('id'));
+
+    console.log(`buying item: ${$(event.target).data('id')}`);
+    $(event.target).data('id')
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+
+      App.contracts.Shop.deployed().then(function(instance) {
+        shopInstance = instance;
+
+        return shopInstance.buyItem(itemId, {from: account, value: 1000000000000000000, gas: 999999});
+      }).then(function(result) {
+        // return App.getItems();
+        
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
+  },
+
+  getItems: function(items, account) {
     var shopInstance;
 
     App.contracts.Shop.deployed().then(function(instance) {
       shopInstance = instance;
 
-      return shopInstance.getBuyers.call();
-    }).then(function(buyers) {
-      for (i = 0; i < buyers.length; i++) {
-        if (buyers[i] !== '0x0000000000000000000000000000000000000000') {
-          $('.panel-item').eq(i).find('button').text('Pending...').attr('disabled', true);
-        }
-      }
+      return shopInstance.getItemOwners.call({from: account});
+    }).then(function(itemOwners) {
+      console.log(itemOwners);
+      // for (i = 0; i < itemOwners.length; i++) {
+      //   if (itemOwners[i] !== '0x0000000000000000000000000000000000000000') {
+      //     // $('.panel-item').eq(i).find('button').text('Pending...').attr('disabled', true);
+      //     console.log(`item ${i} should be removed`)
+      //   } else {
+      //     console.log(`item ${i} owner is ${itemOwners[i]}`)
+      //   }
+      // }
+      return shopInstance.getItemPrices.call({from: account});
+    }).then(function(itemPrices) {
+      console.log(itemPrices[1]);
     }).catch(function(err) {
       console.log(err.message);
     });
+  },
 
+  getBalance: function() {
+
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+      var shopInstance;
+
+      App.contracts.Shop.deployed().then(function(instance) {
+        shopInstance = instance;
+
+        return shopInstance.balances.call(account, {from: account});
+      }).then(function(balance) {
+        console.log(balance);
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
   }
-
-};
+}
 
 $(function() {
   $(window).load(function() {
