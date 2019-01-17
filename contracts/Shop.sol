@@ -1,67 +1,90 @@
 pragma solidity ^0.4.24;
+
+//Finalized version of with events 
 contract Shop {
     
-    address owner;
-    Item[] items;
-    mapping (address => uint) public itemsOwned;
+    address public contractOwner;
+    Item[] public items;
+    mapping (address => uint[]) public itemsOwned;
     mapping (address => uint) public balances; //Will represent the balances of a buyer
+    
+    uint transaction_id; //Added a transaction id for events
 
     //What an object item possesses
-    struct Item{
+    struct Item {
         string name; 
         uint ID;
-        uint price; 
-        uint quantity;
-        address seller;
-        address owner; 
+        uint price;
+        address owner;
+        bool active; //Ask dennis
     }
+    
+    //Event declarations
+
+    event listItemEvent(
+        uint ID, 
+        string name,
+        uint price
+    );
+    
+    event deleteItemEvent(
+        uint ID 
+    );
+    
+    event buyEvent(
+        uint ID, 
+        string name,
+        uint price,
+        address owner
+    );
+    
+    event withdrawFundsEvent(
+        address payee, 
+        uint fundsWithdrawn
+    );
     
     //Basic modifier indicating that an owner can only use certain things 
     modifier onlyOwner() {
-        require(msg.sender == owner);
+        require(msg.sender == contractOwner);
         _;
     }
     
     constructor() public payable{
-        owner = msg.sender;
+        contractOwner = msg.sender;
     }
   
-    function listItem(string name, uint price, uint quantity) public onlyOwner {
-        
-        uint ID = items.push(Item(name, 0, price, quantity, msg.sender, 0)) - 1;
+    function listItem(string name, uint price) public onlyOwner {
+        uint ID = items.push(Item(name, 0, price * 1 ether, msg.sender, true)) - 1;
         items[ID].ID = ID;
         
+        emit listItemEvent(ID, name, price); 
     }
     
-    function deleteItem(uint ID) public onlyOwner{
-        Item memory item = items[ID];
+    //Get rid of item bought
+    function deleteItem(uint ID) public {
+
+        require(msg.sender == items[ID].owner);
+        delete items[ID];
         
-        require(item.ID >=0);
-        
-        if (items.length > 1) {
-            items[ID] = items[items.length-1]; //Setting the last item to the index where the item was deleted
-        }
-        
-        items.length--;
+        emit deleteItemEvent(ID);
     }
     
-    function buy(uint ID) public payable {
+    function buyItem(uint ID) public payable {
         
-        //Make sure the amount sent to buy item is correct
         Item memory item = items[ID];
         
-        require(msg.value >= item.price);
-        require(items[ID].quantity > 0);
+        require(item.active); //Must be active item
+        require(item.owner != msg.sender); //Prevent buying own item
+        require(msg.value == item.price); //Must send exact amount
         
-        itemsOwned[msg.sender] = ID; //Add new item in my own list
-        items[ID].owner = msg.sender; //Make the item be the guy who sent the order
-        balances[item.seller] += msg.value; //Increment seller's balance
-        balances[item.owner] -= msg.value;  //Decrement buyer's balance
-        items[ID].quantity -= 1;
-      	
+        balances[item.owner] += msg.value; //Increment seller's balance
+        itemsOwned[msg.sender].push(ID); //Add new item in my own list
+        items[ID].owner = msg.sender; //Make the owner be the guy who sent the order
+        
+        emit buyEvent(ID, items[ID].name, items[ID].price, items[ID].owner);
     }
   
-    //Withdraw function, whatever is in the balances, 
+    //Withdraw function, whatever is in the balances 
     function withdrawFunds() public {
         
         address payee = msg.sender; 
@@ -73,17 +96,7 @@ contract Shop {
         
         //Move funds
         require(payee.send(payment));
+        
+        emit withdrawFundsEvent(msg.sender, payment);
     }
-  
-    //Retrieve balance of a seller
-    function balanceOf(address seller) public view returns (uint) {
-        return balances[seller];
-    }
-    
-    //function that retrieves an items info 
-    function getItemInfo(uint ID) public view returns (uint, string, uint, uint) {
-        Item memory item = items[ID];
-        return (item.ID, item.name, item.price, item.quantity);
-    }
-    
 }
