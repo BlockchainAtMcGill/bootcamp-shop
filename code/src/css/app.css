@@ -1,0 +1,253 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+body, html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	/* font-family: 'Lucida Grande', sans-serif; */
+	font-family:'Geneva', sans-serif;
+	 position: static;
+	padding-top: 100px;
+}
+
+/*  NAV */
+.brand-color {
+	font-family:'Ubuntu', sans-serif;
+}
+
+.top-color, .brand-color, .brand-color:hover{
+    color: white;
+}
+
+.top-color:hover {
+	color: black;
+}
+
+.form-group {
+	padding: 10px 10px;
+}
+
+.panel-heading{
+	background-color: #292c2f;
+}
+
+.modal-title {
+	text-align: center;
+}
+
+.resource-logo {
+	width: 12px;
+	height: 12px;
+}
+
+.solidity-logo {
+	width: 15px;
+	height: 15px
+}
+
+
+nav {
+	position: fixed;
+	background-color:   #292c2f;
+	padding: 0;
+	top: 0;
+	color: white;
+}
+
+div.nav {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Lato',  sans-serif;
+	background-color:   #292c2f;
+	color: #ffffff;
+}
+
+div.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	background-color:  #292c2f;
+	
+}
+
+div.nav li {
+	/* border-right: 1px solid #bbb; */
+	float: left;
+}
+
+div.nav li a {
+	text-transform: uppercase;
+    display: block;
+    background-color:   #292c2f;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+div.nav li a:hover {
+	background-color: transparent;
+}
+
+div.nav-container {
+	width: 40%;
+}
+
+div.nav-subcontainer{
+	width: 100%;
+}
+
+/* FOOTER */
+
+footer{
+	position: fixed;
+	bottom: 0;
+}
+
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+
+	padding: 10px 40px;
+	margin-top: 70px;
+}
+
+.footer-distributed .footer-left p{
+	color: white;
+	font-size: 14px;
+	margin: 12px;
+	padding: 0;
+}
+
+
+.footer-distributed .footer-right{
+	float: right;
+	margin-top: 6px;
+	max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+	margin-left: 3px;
+}
+
+.footer-left img {
+	width:70px;
+	height: 70px;
+}
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+
+.clear { 
+	clear: both;
+	height: 100px; 
+}
+
+/* 
+ GALLERY
+*/
+
+.browse-image {
+	height:20px;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.widthSet {
+    max-width: 100px;
+}
+
+/* POST */
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.resources-items li{
+	background-color: white;
+  	color: #33383b;
+}
+
+.resources-items :hover {
+ 	background-color: #33383b;
+  	color: white;
+}
+
+.icon-bar{
+	color: white;
+	background-color: white;
+}
+
+
+/* 
+Image Picker
+*/
+ 
+.gallery {
+	max-width:100px;
+}
+
+.item-owner {
+	font-size: 10px;
+}
