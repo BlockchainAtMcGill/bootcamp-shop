@@ -1,0 +1,12 @@
+# Dependency directory
+node_modules
+
+# Debug log from npm
+npm-debug.log
+
+# lol macs
+.DS_Store
+
+.vscode/
+
+/build

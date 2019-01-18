@@ -1,0 +1,20 @@
+[
+  {
+    "id": "",
+    "name": "Macbook Pro",
+    "picture": "images/macbook-pro.jpg",
+    "price": 12,
+    "type": "Electronics",
+    "owner": "",
+    "active": false
+  },
+  {
+    "id": "",
+    "name": "Red Dress",
+    "picture": "images/red-dress.jpg",
+    "price": 15,
+    "type": "Clothing",
+    "owner": "",
+    "active": false
+  }
+]

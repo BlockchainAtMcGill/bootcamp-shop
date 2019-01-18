@@ -55,8 +55,7 @@
       </div><!-- /.container-fluid -->
   </nav>
 
-  <!-- Modal post box -->              <button type="button" class="btn-withdraw">withdraw</button>
-
+  <!-- Modal post box -->
       <div id="postBox" class="modal fade " role="dialog">
         <div class="modal-dialog modal-lg">
           <!-- Modal content-->
@@ -69,12 +68,12 @@
               <form class="form-horizontal" action="/action_page.php">
                   <div class="form-group">
                     <div class="col-auto">
-                      <input type="text" class="form-control" id="name" placeholder="Name">
+                      <input type="email" class="form-control" id="email" placeholder="Title">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-auto"> 
-                      <input type="text" class="form-control" id="type" placeholder="Type">
+                      <input type="" class="form-control" id="obj" placeholder="Object">
                     </div>
                   </div>
                   <div class="form-group">
@@ -82,11 +81,7 @@
                       <input type="number" min="1" step="any" class="form-control" id="price" placeholder="Price">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="image">Choose Image</label>
-                    <input type="file" class="form-control-file" id="image">
-                  </div>
-                  <!-- <div class="modal-body">
+                  <div class="modal-body">
                    <div class="col-md-6">
                        <div class="form-group">
                           <label>Choose Image</label>
@@ -98,11 +93,12 @@
                           </select>
                        </div>
                   </div>
-                </div> -->
-                <button type="submit" class="btn btn-block btn-default" onclick="submit()">Submit</button>
+                </div>
               </form>
               <div class = "form-group"> 
+                <button type="submit" class="btn btn-block btn-default" onclick="submit()">Submit</button>
               </div>
+
             </div>
             <div class="modal-footer">
               
@@ -126,13 +122,11 @@
             <h3 class="panel-title">Macbook Pro</h3>
           </div>
           <div class="panel-body">
-            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="images/bananas.jpg" data-holder-rendered="true">
-            <strong>Type</strong>: <span class="item-type">Laptop</span><br/>
-            <strong>Price</strong>: <span class="item-price">9</span><span> ETH</span><br/>
-            <strong>Owner</strong>: <span class="item-owner">N/A</span><br/><br/>
-            <button class="btn btn-default btn-buy" type="button" data-id="0" data-price="0">Buy</button>
-            <button class="btn btn-default btn-list" type="button" data-id="0" data-price="0">List</button>
-            <button class="btn btn-default btn-delete" type="button" data-id="0">Delete</button>
+            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+            <strong>Type</strong>: <span class="item-price">Laptop</span><br/>
+            <strong>Price</strong>: <span class="item-price">999</span><br/>
+            <strong>Seller</strong>: <span class="item-seller">0x00</span><br/><br/>
+            <button class="btn btn-default btn-buy" type="button" data-id="0">Buy</button>
           </div>
         </div>
       </div>
