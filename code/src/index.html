@@ -49,9 +49,9 @@
               <li>
                 <a href="#" class="dropdown-toggle top-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-items">
-                  <li><a href="https://truffleframework.com/docs"><img class="resource-logo" src="images/truffle-logomark.sv">Truffle</a></li>
-                  <li><a href="https://solidity.readthedocs.io/en/v0.5.2/"><img class="solidity-logo" src="images/solidity-logo.png">Solidity</a></li>
-                  <li><a href="https://devdocs.io/javascript/"><img class="resource-logo" src="images/javascript-logo.png">Javascript</a></li>
+                  <li><a href="https://truffleframework.com/docs"><img class="resource-logo" src="images/truffle-logomark.svg"> Truffle</a></li>
+                  <li><a href="https://solidity.readthedocs.io/en/v0.5.2/"><img class="solidity-logo" src="images/solidity-logo.png"> Solidity</a></li>
+                  <li><a href="https://devdocs.io/javascript/"><img class="resource-logo" src="images/javascript-logo.png"> Javascript</a></li>
                   <li role="separator" class="divider"></li>
                 </ul> 
               </li>
@@ -71,40 +71,22 @@
               <h4 class="modal-title" textalign="center">Post</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" action="/action_page.php">
-                  <div class="form-group">
-                    <div class="col-auto">
-                      <input type="text" class="form-control" id="name" placeholder="Name">
-                    </div>
+              <form class="form-horizontal form-post">
+                <div class="form-group">
+                  <div class="col-auto">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
                   </div>
-                  <div class="form-group">
-                    <div class="col-auto"> 
-                      <input type="text" class="form-control" id="type" placeholder="Type">
-                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm"> 
+                    <input type="number" min="0.000000000000000001" step="any" class="form-control" id="price" placeholder="Price">
                   </div>
-                  <div class="form-group">
-                    <div class="col-sm"> 
-                      <input type="number" min="1" step="any" class="form-control" id="price" placeholder="Price">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="image">Choose Image</label>
-                    <input type="file" class="form-control-file" id="image">
-                  </div>
-                  <!-- <div class="modal-body">
-                   <div class="col-md-6">
-                       <div class="form-group">
-                          <label>Choose Image</label>
-                          
-                          <select class="image-picker show-html">
-                                <option data-img-src="images/surface-pro.png" value="1">Surface Pro </option>
-                                <option data-img-src="images/macbook-pro.jpg" value="2"> Macbook Pro </option>
-                                <option data-img-src="images/red-dress.jpg" value="3"> Red Dress</option>
-                          </select>
-                       </div>
-                  </div>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="image">Choose Image</label>
+                  <input type="file" class="form-control-file" id="image">
                 </div> -->
-                <button type="submit" class="btn btn-block btn-default" onclick="submit()">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
               </form>
               <div class = "form-group"> 
               </div>
@@ -132,10 +114,11 @@
           </div>
           <div class="panel-body">
             <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="images/bananas.jpg" data-holder-rendered="true">
-            <strong>Price</strong>: <span class="item-price">9</span><span> ETH</span><br/>
+            <strong>Name</strong>: <span class="item-title">N/A</span><br/>
+            <strong>ID</strong>: <span class="item-id">N/A</span><br/>
+            <strong>Price</strong>: <span class="item-price">N/A</span><span> ETH</span><br/>
             <strong>Owner</strong>: <span class="item-owner">N/A</span><br/><br/>
             <button class="btn btn-default btn-buy" type="button" data-id="0" data-price="0">Buy</button>
-            <button class="btn btn-default btn-list" type="button" data-id="0" data-price="0">List</button>
             <button class="btn btn-default btn-delete" type="button" data-id="0">Delete</button>
           </div>
         </div>
