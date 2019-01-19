@@ -36,26 +36,31 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-              <li><a href="#" data-toggle="modal" class="top-color" data-target="#postBox"> Post </a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="Se">
-
-              <a href="#" class="dropdown-toggle top-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Resources <span class="caret"></span></a>
-              <ul class="dropdown-menu resources-items">
-                <li><a href="https://truffleframework.com/docs"><img class="resource-logo" src="images/truffle-logomark.svg"  > Truffle </a></li>
-                <li><a href="https://solidity.readthedocs.io/en/v0.5.2/"><img class="solidity-logo" src="images/solidity-logo.png"  > Solidity </a></li>
-                <li><a href="https://devdocs.io/javascript/"><img class="resource-logo" src="images/javascript-logo.png"  > Javascript </a></li>
-                <li role="separator" class="divider"></li>
-              </ul> 
-              
-            </li>
-          </ul>
+              <li><a href="#" data-toggle="modal" class="top-color" data-target="#postBox">Post</a></li>
+              <li><a class="btn-withdraw top-color">Withdraw</a></li>
+              <li>
+                <a href="#" class="dropdown-toggle top-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-items account">
+                  <li class="network">Connected to network:<div id="network-name">N/A</div></li>
+                  <li class="wallet">Wallet:<div id="wallet-address">N/A</div></li>
+                  <li class="balance">Balance:<div id="balance-amount">N/A</div></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="dropdown-toggle top-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-items">
+                  <li><a href="https://truffleframework.com/docs"><img class="resource-logo" src="images/truffle-logomark.sv">Truffle</a></li>
+                  <li><a href="https://solidity.readthedocs.io/en/v0.5.2/"><img class="solidity-logo" src="images/solidity-logo.png">Solidity</a></li>
+                  <li><a href="https://devdocs.io/javascript/"><img class="resource-logo" src="images/javascript-logo.png">Javascript</a></li>
+                  <li role="separator" class="divider"></li>
+                </ul> 
+              </li>
+              <li><a href="#" class="metamask-locked"></a></li>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
   </nav>
 
-  <!-- Modal post box -->              <button type="button" class="btn-withdraw">withdraw</button>
+  <!-- Modal post box -->
 
       <div id="postBox" class="modal fade " role="dialog">
         <div class="modal-dialog modal-lg">
@@ -63,7 +68,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title" textalign="center"> Post</h4>
+              <h4 class="modal-title" textalign="center">Post</h4>
             </div>
             <div class="modal-body">
               <form class="form-horizontal" action="/action_page.php">
@@ -127,7 +132,6 @@
           </div>
           <div class="panel-body">
             <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="images/bananas.jpg" data-holder-rendered="true">
-            <strong>Type</strong>: <span class="item-type">Laptop</span><br/>
             <strong>Price</strong>: <span class="item-price">9</span><span> ETH</span><br/>
             <strong>Owner</strong>: <span class="item-owner">N/A</span><br/><br/>
             <button class="btn btn-default btn-buy" type="button" data-id="0" data-price="0">Buy</button>

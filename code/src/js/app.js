@@ -7,58 +7,60 @@ App = {
   },
 
   getItems: function() {
-
-    // Load items.
-    $.getJSON('../items.json', function(data) {
       
       var shopInstance;
+      var itemCount;
+      var itemPromises = [];
+      var items = [];
+
+      App.getBalance();
 
       App.contracts.Shop.deployed().then(function(instance) {
         shopInstance = instance;
-
-        return shopInstance.getItemOwners.call();
-      }).then(function(itemOwners) {
-        for (i = 0; i < itemOwners.length; i++) {
-          if (itemOwners[i] == '0x0000000000000000000000000000000000000000') {
-            // $('.panel-item').eq(i).find('button').text('Pending...').attr('disabled', true);
-            // console.log(`item ${i} should be removed`)
-          } else {
-            // console.log(`item ${i} owner is ${itemOwners[i]}`)
-            data[i].owner = itemOwners[i];
-          }
+        return shopInstance.itemCount.call();
+      }).then(function(data) {
+        itemCount = data.toString();
+        console.log(`Number of items: ${itemCount}`);
+        for (var i = 0; i < itemCount; i++) {
+          itemPromises.push(shopInstance.items.call(i))
         }
-        return shopInstance.getItemPrices.call();
-      }).then(function(itemPrices) {
-        for (i = 0; i < itemPrices.length; i++) {
-          if (itemPrices[i] == 0) {
-            // $('.panel-item').eq(i).find('button').text('Pending...').attr('disabled', true);
-            // console.log(`item ${i} should be removed`)
-          } else {
-            // console.log(`item ${i} price is ${itemPrices[i]}`)
-            data[i].price = itemPrices[i] / 1000000000000000000;
-          }
-        }
-
-        var itemsRow = $('#itemsRow');
-        var itemTemplate = $('#itemTemplate');
-
-        console.log(data);
-        for (i = 0; i < data.length; i ++) {
-          data[i].id = i;
-          itemTemplate.find('.panel-title').text(data[i].name);
-          itemTemplate.find('img').attr('src', data[i].picture);
-          itemTemplate.find('.item-type').text(data[i].type);
-          itemTemplate.find('.item-price').text(data[i].price);
-          itemTemplate.find('.item-owner').text(data[i].owner);
-          itemTemplate.find('.btn-buy').attr({'data-id': data[i].id, 'data-price': data[i].price});
-          itemTemplate.find('.btn-list').attr({'data-id': data[i].id, 'data-price': data[i].price});
-          itemsRow.append(itemTemplate.html());
-        }
+        Promise.all(itemPromises).then(contractData => {
+          // Load item images
+          $.getJSON('../images.json').then(localData => {
+            contractData.map(data => {
+              var item = {};
+              item.name = data[0];
+              item.id = parseInt(data[1].toString());
+              item.price = parseInt(data[2].toString());
+              item.owner = data[3];
+              localData.hasOwnProperty(item.id) ?
+              item.image = localData[item.id].image :
+              item.image = "images/default.png";
+              items.push(item);
+            });
+            console.log(items);
+            App.renderItems(items);
+          });
+        });
       }).catch(function(err) {
         console.log(err.message);
       });
-    });
+  },
 
+  renderItems: function(items) {
+    var itemsRow = $('#itemsRow');
+    var itemTemplate = $('#itemTemplate');
+
+    for (i = 0; i < items.length; i ++) {
+      items[i].id = i;
+      itemTemplate.find('.panel-title').text(items[i].name);
+      itemTemplate.find('img').attr('src', items[i].image);
+      itemTemplate.find('.item-price').text(items[i].price);
+      itemTemplate.find('.item-owner').text(items[i].owner);
+      itemTemplate.find('.btn-buy').attr({'data-id': items[i].id, 'data-price': items[i].price});
+      itemTemplate.find('.btn-list').attr({'data-id': items[i].id, 'data-price': items[i].price});
+      itemsRow.append(itemTemplate.html());
+    }
   },
 
   initWeb3: function() {
@@ -71,6 +73,27 @@ App = {
       App.web3Provider = new web3.providers.HttpProvider('http://localhost:8545');
       web3 = new Web3(App.web3Provider);
     }
+
+
+    var networkName;
+
+    web3.version.getNetwork((err, netId) => {
+      switch (netId) {
+        case "1":
+          networkName = "Mainnet"
+          break
+        case "42":
+          networkName = "Rinkeby"
+          break
+        case "4":
+          networkName = "Kovan"
+          break
+        default:
+          networkName = "Unknown"
+      }
+      $('#network-name').text(networkName);
+    })
+
     return App.initContract();
   },
 
@@ -208,16 +231,22 @@ App = {
         console.log(error);
       }
 
+      if (accounts == undefined || accounts.length == 0) {
+        $('.metamask-locked').text("Unlock Metamask to continue");
+        return;
+      }
+      
       var account = accounts[0];
+      $('#wallet-address').text(account);
       var shopInstance;
 
       App.contracts.Shop.deployed().then(function(instance) {
         shopInstance = instance;
-
+        console.log(accounts)
         return shopInstance.balances.call(account, {from: account});
-      }).then(function(balance) {
-        console.log(balance);
-      }).catch(function(err) {
+      }).then(balance => {
+        $('#balance-amount').text(balance.toString());
+      }).catch(err => {
         console.log(err.message);
       });
     });
