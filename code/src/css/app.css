@@ -79,7 +79,7 @@ div.nav li {
 	float: left;
 }
 
-div.nav li a {
+div.nav li a, div.nav li div{
 	text-transform: uppercase;
     display: block;
     background-color:   #292c2f;
@@ -224,12 +224,12 @@ div.gallery img {
     display: block;
 }
 
-.resources-items li{
+.dropdown-items li{
 	background-color: white;
   	color: #33383b;
 }
 
-.resources-items :hover {
+.dropdown-items :hover {
  	background-color: #33383b;
   	color: white;
 }
@@ -250,4 +250,8 @@ Image Picker
 
 .item-owner {
 	font-size: 10px;
+}
+
+.metamask-locked {
+	color: red;
 }
